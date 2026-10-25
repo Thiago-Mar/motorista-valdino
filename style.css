@@ -1,0 +1,443 @@
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --borda: #262626;
+  --texto: #e8e8e8;
+  --suave: #a9a9a9;
+  --verde: #2ee62e;
+
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* =========================
+   RESET E CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--texto);
+  font: 400 18px/1.55 Barlow, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 28px;
+}
+
+h1 span,
+h2 span {
+  color: var(--verde);
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 64px 0;
+}
+
+/* =========================
+   BOTÕES E ACESSIBILIDADE
+========================= */
+
+.btn {
+  display: inline-block;
+  background: var(--verde);
+  color: #06140a;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  box-shadow: 0 0 24px rgba(46, 230, 46, 0.35);
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  vertical-align: -4px;
+  margin-right: 10px;
+}
+
+/* =========================
+   CAPA / HERO
+========================= */
+
+.hero {
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 48px 0;
+  background:
+    linear-gradient(
+      rgba(10, 10, 10, 0.5),
+      rgba(10, 10, 10, 0.94)
+    ),
+    url("img/fundo.jpeg") center 55% / cover;
+}
+
+.hero img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(46, 230, 46, 0.45);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 7vw, 4.4rem);
+  max-width: 15ch;
+  margin: 0 auto 16px;
+}
+
+.hero p {
+  max-width: 46ch;
+  margin: 0 auto 30px;
+  color: #cfcfcf;
+}
+
+/* =========================
+   GRADES E CARTÕES
+========================= */
+
+.grade {
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 26px;
+}
+
+.card h3 {
+  font-size: 1.7rem;
+  color: var(--verde);
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--suave);
+}
+
+.card.main {
+  border-color: var(--verde);
+  box-shadow: 0 0 22px rgba(46, 230, 46, 0.18);
+}
+
+/* =========================
+   FOTOS E IMAGEM DA ESTRADA
+========================= */
+
+.fotos img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--borda);
+}
+
+.fotos .larga {
+  grid-column: 1 / -1;
+  max-height: 420px;
+  object-position: center 20%;
+}
+
+.estrada {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--borda);
+  display: block;
+}
+
+.leg {
+  color: var(--suave);
+  margin: 14px 0 0;
+}
+
+/* =========================
+   CARROSSEL DE VEÍCULOS
+========================= */
+
+.car {
+  position: relative;
+}
+
+.trilho {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 16px;
+  border: 1px solid var(--borda);
+}
+
+.trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.s {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  height: clamp(300px, 62vw, 540px);
+  margin: 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.s::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(28px) brightness(0.45);
+  -webkit-backdrop-filter: blur(28px) brightness(0.45);
+}
+
+.s img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  max-height: none;
+}
+
+/* Setas do carrossel */
+
+.seta {
+  position: absolute;
+  top: calc(50% - 23px);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--verde);
+  background: rgba(10, 10, 10, 0.65);
+  color: var(--verde);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.seta:hover {
+  background: var(--verde);
+  color: #06140a;
+}
+
+.seta:focus-visible,
+.dots button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.e {
+  left: 12px;
+}
+
+.d {
+  right: 12px;
+}
+
+/* Indicadores do carrossel */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.dots button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: #3a3a3a;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dots button.on {
+  background: var(--verde);
+  transform: scale(1.25);
+}
+
+/* =========================
+   ETAPAS DO ATENDIMENTO
+========================= */
+
+.passos {
+  counter-reset: p;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.passos li {
+  counter-increment: p;
+  border-top: 3px solid var(--verde);
+  padding-top: 14px;
+}
+
+.passos li::before {
+  content: "0" counter(p);
+  font: 700 2rem "Barlow Condensed", sans-serif;
+  color: var(--verde);
+  display: block;
+}
+
+/* =========================
+   CHAMADA FINAL E RODAPÉ
+========================= */
+
+.final {
+  text-align: center;
+  background: #101010;
+  border-top: 1px solid var(--borda);
+}
+
+.final p {
+  color: var(--suave);
+  margin: 0 auto 26px;
+  max-width: 46ch;
+}
+
+footer {
+  padding: 26px 0 96px;
+  text-align: center;
+  color: var(--suave);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--borda);
+}
+
+/* =========================
+   BOTÃO FLUTUANTE DO WHATSAPP
+========================= */
+
+.flut {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 5;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border-radius: 50%;
+  background: #25d366;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.flut svg {
+  width: 36px;
+  height: 36px;
+  fill: #fff;
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+.troca {
+  color: var(--verde);
+  transition: opacity 0.3s;
+}
+
+.js .rev {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js .rev.on {
+  opacity: 1;
+  transform: none;
+}
+
+.js .flut {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.js .flut.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (min-width: 760px) {
+  .grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .duas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .passos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Respeita a preferência por movimento reduzido */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .rev,
+  .js .flut {
+    transition: none;
+  }
+}
